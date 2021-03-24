@@ -2,15 +2,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const router = express.Router();
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use(express.urlencoded({
-  extended: true
-}));
+//const db = mongoose.connect('mongodb://localhost/recipes');
+const port = process.env.PORT || 3000;
+const Recipe = require('./models/recipeModel');
+const recipeRouter = require('./routes/recipeRouter')(Recipe);
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/api', router);
+
+app.use('/api', recipeRouter);
+
+app.get('/', (req, res) => {
+  return res.send('Hello!')
+});
 
 app.listen(port, () => {
   console.log(`Running on port ${port}`);
