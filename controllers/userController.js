@@ -27,7 +27,7 @@ function userController(User) {
     if (data.password) {
       bcrypt.hash(data.password, SALT_WORK_FACTOR, function (err, hash) {
         if (err) {
-          return res.status(500).send();
+          return res.status(500).send(err);
         }
 
         user.password = hash;

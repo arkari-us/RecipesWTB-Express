@@ -7,8 +7,8 @@ const recipeModel = new Schema({
   ingredients: [String],
   instructions: [String],
   tags: [String],
-  author: { type: String },
-  favoritedBy: { type: [String] }
+  author: String,
+  favoritedBy: [String]
 });
 
 module.exports = mongoose.model('Recipe', recipeModel);

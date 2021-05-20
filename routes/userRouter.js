@@ -6,15 +6,17 @@ function routes(User) {
   const userController = require('../controllers/userController')(User);
 
   userRouter.route('/')
-    .get(userController.get)
-    .post(userController.post);
+    .post(userController.createUser)
+    .get(userController.get);
   userRouter.route('/:id')
     .get(userController.getById)
-    .put(userController.putById)
+    .patch(userController.update)
     .delete(userController.removeById);
   userRouter.route('/favorites')
     .get(userController.getFavorites)
     .delete(userController.removeFavorite);
+  userRouter.route('/favorites/:id')
+    .post(userController.addFavorite);
   return userRouter;
 }
 
