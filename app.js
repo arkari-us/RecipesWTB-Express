@@ -9,9 +9,8 @@ const db = mongoose.connect('mongodb://localhost/recipes');
 const port = process.env.PORT || 3000;
 
 const Recipe = require('./models/recipeModel');
-const recipeRouter = require('./routes/recipeRouter')(Recipe);
-
 const User = require('./models/userModel');
+const recipeRouter = require('./routes/recipeRouter')(Recipe, User);
 const userRouter = require('./routes/userRouter')(User);
 
 app.use(express.urlencoded({ extended: true }));

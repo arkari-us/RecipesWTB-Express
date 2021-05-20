@@ -40,7 +40,6 @@ function userController(User) {
       return res.status(400).send('No password or third-party token specified');
     }
 
-    // TODO: hash password
     user.save();
     return res.status(201).json(user.id);
   }

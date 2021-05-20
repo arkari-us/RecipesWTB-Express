@@ -1,5 +1,7 @@
-function recipesController(Recipe) {
+/* eslint-disable object-curly-newline */
+function recipesController(Recipe, User) {
   function post(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     const recipe = new Recipe(req.body.payload);
 
     recipe.save();
@@ -21,6 +23,7 @@ function recipesController(Recipe) {
   }
 
   function getById(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     Recipe.findById(req.params.id, (err, recipe) => {
       if (err) {
         return res.send(err);
@@ -31,6 +34,7 @@ function recipesController(Recipe) {
   }
 
   function putById(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     Recipe.findOneAndReplace(req.params.id, req.body, (err, recipe) => {
       if (err) {
         return res.send(err);
@@ -40,6 +44,7 @@ function recipesController(Recipe) {
   }
 
   function removeById(req, res) {
+    res.header('Access-Control-Allow-Origin', '*');
     Recipe.findByIdAndDelete(req.params.id, (err, recipe) => {
       if (err) {
         return res.send(err);
